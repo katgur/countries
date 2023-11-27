@@ -88,8 +88,6 @@ function Countries({ countryNames }) {
 
     return (
         <>
-            {countryNames.length > 10 &&
-                <p className="bg-red-100 rounded p-4 mt-3">Too many countries, specify another filter</p>}
             {
                 countryNames.length <= 10 && countryNames.length > 1 &&
                 <ul>
@@ -99,7 +97,7 @@ function Countries({ countryNames }) {
                                 return (
                                     <li className="py-6 border-b-[1px]" key={countryName}>
                                         <div className="flex justify-between">
-                                            <p className="font-bold">{countryName}</p>
+                                            <p>{countryName}</p>
                                             <button className="bg-blue-500 text-white py-1 px-2 rounded" onClick={() => onShowButtonClick(index)}>Show</button>
                                         </div>
                                         {selected === index && <Country countryName={countryName} />}

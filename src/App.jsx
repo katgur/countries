@@ -21,8 +21,10 @@ const App = () => {
     <div className='p-4'>
       <div className='block mx-[auto] w-1/2'>
         <label className="font-bold text-2xl block text-center">Find countries</label>
-        <input className="mt-2 block w-full px-2 py-1 border-[1px] rounded bg-blue-50 hover:border-blue-100" value={search} onChange={(event) => setSearch(event.target.value.toLowerCase())} />
+        <input placeholder='Enter the name of a country' className="mt-2 block w-full px-2 py-1 border-[1px] rounded bg-blue-50 hover:border-blue-100" value={search} onChange={(event) => setSearch(event.target.value.toLowerCase())} />
         <Countries countryNames={filtered} />
+        {search.length !== 0 && filtered.length > 10 &&
+          <p className="bg-red-100 rounded p-4 mt-3">Too many countries, specify another filter</p>}
       </div>
     </div>
   )
