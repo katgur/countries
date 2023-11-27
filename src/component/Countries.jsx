@@ -39,7 +39,7 @@ function Country({ countryName }) {
                 .then(data => {
                     setWeather({
                         main: data.weather[0].main,
-                        img: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
+                        img: `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`,
                         temperature: kelvinToCelcius(data.main.temp).toFixed(2),
                         wind: data.wind.speed,
                     })
@@ -51,6 +51,7 @@ function Country({ countryName }) {
     return (
         country &&
         <div className="shadow-2xl rounded p-6 mt-4">
+            <img width="150px" className="float-right block mx-[auto] mt-6 border-[1px]" src={country.flag} alt={country.alt} />
             <h1 className="font-bold">{country.name}</h1>
             <p className="mt-2"><span className="text-sm text-gray-500">capital</span> {country.capital}</p>
             <p className="mt-2"><span className="text-sm text-gray-500">area</span> {country.area}</p>
@@ -62,14 +63,12 @@ function Country({ countryName }) {
                     })
                 }
             </ul>
-            <img className="block mx-[auto] mt-6" src={country.flag} alt={country.alt} />
             {
-                weather && <div>
-                    <h2>Weather in {country.capital}</h2>
-                    <p>{weather.main}</p>
-                    <p>temperature {weather.temperature} Celcius</p>
-                    <img width="300px" src={weather.img} alt={weather.main} />
-                    <p>wind {weather.wind} meter/sec</p>
+                weather && <div className="mt-4">
+                    <h2 className="font-bold">Weather in {country.capital}</h2>
+                    <p> {weather.main} <img className="inline-block" width="100px" src={weather.img} alt={weather.main} /></p>
+                    <p><span className="text-sm text-gray-500">temperature</span> {weather.temperature} Celcius</p>
+                    <p><span className="text-sm text-gray-500">wind</span> {weather.wind} meter/sec</p>
                 </div>
             }
         </div>
