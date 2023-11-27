@@ -89,7 +89,7 @@ function Countries({ countryNames }) {
     return (
         <>
             {
-                countryNames.length <= 10 && countryNames.length > 1 &&
+                countryNames && countryNames.length <= 10 && countryNames.length > 1 &&
                 <ul>
                     {
                         countryNames
@@ -107,8 +107,8 @@ function Countries({ countryNames }) {
                     }
                 </ul>
             }
-            {countryNames.length === 1 && <Country countryName={countryNames[0]} />}
-            {countryNames.length === 0 &&
+            {countryNames && countryNames.length === 1 && <Country countryName={countryNames[0]} />}
+            {countryNames && countryNames.length === 0 &&
                 <p className="bg-red-100 rounded p-4 mt-3">No matching names</p>}
         </>
     )
