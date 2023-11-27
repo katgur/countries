@@ -18,12 +18,12 @@ const App = () => {
   })
 
   return (
-    <div>
-      <div>
-        <label>find countries</label>
-        <input value={search} onChange={(event) => setSearch(event.target.value.toLowerCase())} />
+    <div className='p-4'>
+      <div className='block mx-[auto] w-1/2'>
+        <label className="font-bold text-2xl block text-center">Find countries</label>
+        <input className="mt-2 block w-full px-2 py-1 border-[1px] rounded bg-blue-50 hover:border-blue-100" value={search} onChange={(event) => setSearch(event.target.value.toLowerCase())} />
+        <Countries countryNames={filtered} />
       </div>
-      <Countries countryNames={filtered} />
     </div>
   )
 }

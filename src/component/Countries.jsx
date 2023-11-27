@@ -50,25 +50,25 @@ function Country({ countryName }) {
 
     return (
         country &&
-        <div>
-            <h1>{country.name}</h1>
-            <p>capital {country.capital}</p>
-            <p>area {country.area}</p>
-            <h3>languages:</h3>
-            <ul>
+        <div className="shadow-2xl rounded p-6 mt-4">
+            <h1 className="font-bold">{country.name}</h1>
+            <p className="mt-2"><span className="text-sm text-gray-500">capital</span> {country.capital}</p>
+            <p className="mt-2"><span className="text-sm text-gray-500">area</span> {country.area}</p>
+            <p className="mt-2 text-sm text-gray-500">languages</p>
+            <ul className="mt-1">
                 {
                     country.languages.map(language => {
-                        return <li key={language}>{language}</li>
+                        return <li className="bg-blue-100 rounded p-1 inline-block mr-1 mt-1" key={language}>{language}</li>
                     })
                 }
             </ul>
-            <img src={country.flag} alt={country.alt} />
+            <img className="block mx-[auto] mt-6" src={country.flag} alt={country.alt} />
             {
                 weather && <div>
                     <h2>Weather in {country.capital}</h2>
                     <p>{weather.main}</p>
                     <p>temperature {weather.temperature} Celcius</p>
-                    <img src={weather.img} alt={weather.main} />
+                    <img width="300px" src={weather.img} alt={weather.main} />
                     <p>wind {weather.wind} meter/sec</p>
                 </div>
             }
@@ -89,7 +89,8 @@ function Countries({ countryNames }) {
 
     return (
         <>
-            {countryNames.length > 10 && <span>Too many countries, specify another filter</span>}
+            {countryNames.length > 10 &&
+                <p className="bg-red-100 rounded p-4 mt-3">Too many countries, specify another filter</p>}
             {
                 countryNames.length <= 10 && countryNames.length > 1 &&
                 <ul>
@@ -97,8 +98,11 @@ function Countries({ countryNames }) {
                         countryNames
                             .map((countryName, index) => {
                                 return (
-                                    <li key={countryName}>
-                                        <p>{countryName} <button onClick={() => onShowButtonClick(index)}>show</button></p>
+                                    <li className="py-6 border-b-[1px]" key={countryName}>
+                                        <div className="flex justify-between">
+                                            <p className="font-bold">{countryName}</p>
+                                            <button className="bg-blue-500 text-white py-1 px-2 rounded" onClick={() => onShowButtonClick(index)}>Show</button>
+                                        </div>
                                         {selected === index && <Country countryName={countryName} />}
                                     </li>
                                 )
@@ -107,6 +111,8 @@ function Countries({ countryNames }) {
                 </ul>
             }
             {countryNames.length === 1 && <Country countryName={countryNames[0]} />}
+            {countryNames.length === 0 &&
+                <p className="bg-red-100 rounded p-4 mt-3">No matching names</p>}
         </>
     )
 }
